@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="outer">
+<h1 class="updateheading">Update your todo here</h1>
+<form action="/updatetodo/{{ut.id}}/" method="post" class="inner">
+    {% csrf_token %}
+    
+        <input type="text" name="title" id="" value={{ut.title}}>
+        <select name="status" id="cars" value={{ut.status}}>
+            <option value="C">Completed</option>
+            <option value="P">Pending</option>
+        </select>
+        <button>Update</button>
+</form>
+</div>
+{% endblock body %}

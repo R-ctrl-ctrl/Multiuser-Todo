@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Home Page {% endblock title %}
+
+{% block body %}
+<div class="indexbody">
+<h1 class="heading">Welcome To Our TODO Application</h1>
+<h3 class="subheading">Please Sign-in if you are a new User and login if you already have an account</h3>
+<div class="btncompo">
+<button class="homeloginbtn"><a href="/login">Login</button></a>
+<button class="homesignupbtn"><a href="/signup">SignUp</a></button>
+</div>
+
+</div>
+{% endblock body %}

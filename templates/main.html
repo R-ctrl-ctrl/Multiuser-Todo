@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+<div class="main"> 
+
+
+  <h1 class="welcomeheading">Hello {{request.user}}</h1>
+
+  <div class="container col-lg-4 mx-auto shadow p-0 mt-4">
+    <div class="alert alert-info text-center">Add a task</div>
+    <div class="p-4">
+      <form method='POST' action='/addtodo'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="text-center">
+          <button class="btn btn-success ">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+
+    {% comment %} {{todo.title}} {% endcomment %}
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Sr No</th>
+          <th scope="col">Task</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todos %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{todo.title}}</td>
+          <td>{{todo.status}}</td>
+          <td><button class="deletebtn"><a href="deletetodo/{{todo.id}}">Delete</a></button></td>
+          <td><button class="updatebtn"><a href="updatetodo/{{todo.id}}">Update</a></button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+  {% endblock body %}
+</div>
